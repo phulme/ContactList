@@ -15,6 +15,7 @@ class ContactsController < ApplicationController
   # GET /contacts/new
   def new
     @contact = Contact.new
+    4.times {@contact.PhoneNumbers.build}
   end
 
   # GET /contacts/1/edit
@@ -69,6 +70,6 @@ class ContactsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contact_params
-      params.require(:contact).permit(:name, :type, :status)
+      params.require(:contact).permit(:name, :type, :status, PhoneNumbers_attributes: [:id, :p_type, :p_number])
     end
 end

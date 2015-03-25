@@ -20,17 +20,23 @@
 
   <div class="form-group">
     <div class='col-md-offset-2 col-md-10'>
+
+      <H3>Phone Numbers</H3>
+      <%= f.fields_for :PhoneNumbers do |phoneNumbers_form| %>
+        <li>
+          <%= phoneNumbers_form.label 'Type' %>
+          <%= phoneNumbers_form.select :p_type, [['Mobile', 'Mobile'],['Office', 'Office'],['Other', 'Other']] %>
+          <%= phoneNumbers_form.label 'Number' %>
+          <%= phoneNumbers_form.text_field :p_number %>
+
+        </li>
+      <% end %>
+
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                   contacts_path, :class => 'btn btn-default' %>
     </div>
   </div>
 
-  <%= fields_for :PhoneNumbers do |pn_form| %>
-    <li>
-      <%= pn_form.label :p_type %>
-      <%= pn_form.text_field :p_type %>
 
-    </li>
-    <% end %>
 <% end %>
