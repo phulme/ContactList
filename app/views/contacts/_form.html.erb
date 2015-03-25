@@ -1,0 +1,36 @@
+<%= form_for @contact, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="form-group">
+    <%= f.label :name, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :name, :class => 'text_field form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :type, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :type, :class => 'text_field form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :status, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :status, :class => 'text_field form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class='col-md-offset-2 col-md-10'>
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  contacts_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+  <%= fields_for :PhoneNumbers do |pn_form| %>
+    <li>
+      <%= pn_form.label :p_type %>
+      <%= pn_form.text_field :p_type %>
+
+    </li>
+    <% end %>
+<% end %>
