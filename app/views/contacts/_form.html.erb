@@ -1,20 +1,26 @@
 <%= form_for @contact, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="form-group">
-    <%= f.label :name, :class => 'control-label col-md-2' %>
+    <%= f.label 'First Name', :class => 'control-label col-md-2' %>
     <div class="col-md-10">
       <%= f.text_field :name, :class => 'text_field form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :type, :class => 'control-label col-md-2' %>
+    <%= f.label 'Surname', :class => 'control-label col-md-2' %>
     <div class="col-md-10">
-      <%= f.text_field :type, :class => 'text_field form-control' %>
+      <%= f.text_field :surname, :class => 'text_field form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :status, :class => 'control-label col-md-2' %>
+    <%= f.label 'e-mail', :class => 'control-label col-md-2' %>
     <div class="col-md-10">
-      <%= f.text_field :status, :class => 'text_field form-control' %>
+      <%= f.text_field :email, :class => 'text_field form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :type, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.select(:type,['Staff','Third Party','Department'],{}, {:class => 'form-control'}) %>
     </div>
   </div>
 
@@ -23,13 +29,9 @@
 
       <H3>Phone Numbers</H3>
       <%= f.fields_for :PhoneNumbers do |phoneNumbers_form| %>
-        <li>
-          <%= phoneNumbers_form.label 'Type' %>
-          <%= phoneNumbers_form.select :p_type, [['Mobile', 'Mobile'],['Office', 'Office'],['Other', 'Other']] %>
-          <%= phoneNumbers_form.label 'Number' %>
-          <%= phoneNumbers_form.text_field :p_number %>
-
-        </li>
+          <div class="form-group"><%= phoneNumbers_form.select(:p_type,['Mobile','Home','Office','Other'], {},{ :class => 'form-control'})  %></div>
+         <div class="form-group"> <%= phoneNumbers_form.text_field :p_number, :class => 'text_field form-control'  %></div>
+        <br>
       <% end %>
 
       <%= f.submit nil, :class => 'btn btn-primary' %>
@@ -40,3 +42,14 @@
 
 
 <% end %>
+
+<style>
+
+  .form-control {
+    display: block;
+    width: 45%;
+    ;
+  }
+
+
+</style>

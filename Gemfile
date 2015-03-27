@@ -8,9 +8,11 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bootstrap-sass', '~> 3.3.4'
 gem 'bootstrap-sass-extras'
+gem 'jquery-datatables-rails'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 
 group :doc do

@@ -2,25 +2,28 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
-<table class="table table-striped">
+<table class="table table-striped datatable" id="myTable">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:type) %></th>
-      <th><%= model_class.human_attribute_name(:status) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%= model_class.human_attribute_name('Mobile') %></th>
+      <th><%= model_class.human_attribute_name('Office') %></th>
+      <th><%= model_class.human_attribute_name('Home') %></th>
+      <th><%= model_class.human_attribute_name('Other') %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @contacts.each do |contact| %>
       <tr>
-        <td><%= contact.id %></td>
           <td><%= contact.name %></td>
           <td><%= contact.type %></td>
-          <td><%= contact.status %></td>
-        <td><%=l contact.created_at, format: :long %></td>
+        <td><%= contact.PhoneNumbers.where(p_type: "Mobile").first.p_number if contact.PhoneNumbers.where(p_type: "Mobile").present? %></td>
+        <td><%= contact.PhoneNumbers.where(p_type: "Office").first.p_number if contact.PhoneNumbers.where(p_type: "Office").present? %></td>
+        <td><%= contact.PhoneNumbers.where(p_type: "Home").first.p_number if contact.PhoneNumbers.where(p_type: "Home").present? %></td>
+        <td><%= contact.PhoneNumbers.where(p_type: "Other").first.p_number if contact.PhoneNumbers.where(p_type: "Other").present? %></td>
+
         <td>
           <%= link_to contact_path(contact), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
             <%= glyph 'info-sign' %>
@@ -40,3 +43,31 @@
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_contact_path,
             :class => 'btn btn-primary' %>
+
+
+<script type="application/javascript">
+  //$('.datatable').DataTable({
+    // ajax: ...,
+    //autoWidth: false,
+    //pagingType: 'full_numbers'
+    // processing: true,
+    // serverSide: true,
+
+    // Optional, if you want full pagination controls.
+    // Check dataTables documentation to learn more about available options.
+    // http://datatables.net/reference/option/pagingType
+  //});
+
+</script>
+
+<style>
+
+  .dataTables_filter {
+    text-align: right;
+  }
+
+  .dataTables_paginate {
+    text-align: right;
+  }
+
+</style>

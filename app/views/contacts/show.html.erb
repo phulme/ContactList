@@ -7,10 +7,10 @@
   <dl>
       <dt class="label label-default"><%= model_class.human_attribute_name(:name) %></dt>
       <dd><pre class="prettyprint"><%= @contact.name %></pre></dd>
+    <dt class="label label-default"><%= model_class.human_attribute_name('Mobile') %></dt>
+    <dd><pre class="prettyprint"><%= @contact.PhoneNumbers.where(p_type: 'Mobile').first.p_number if @contact.PhoneNumbers.where(p_type: "Mobile").present? %></pre></dd>
       <dt class="label label-default"><%= model_class.human_attribute_name(:type) %></dt>
       <dd><pre class="prettyprint"><%= @contact.type %></pre></dd>
-      <dt class="label label-default"><%= model_class.human_attribute_name(:status) %></dt>
-      <dd><pre class="prettyprint"><%= @contact.status %></pre></dd>
   </dl>
 </div>
 
